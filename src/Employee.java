@@ -7,9 +7,13 @@ public class Employee {
     private String jobTitle;
     private String department;
 
-
-    public Employee() {
-        System.out.println("Creating the employee");
+    public Employee(int id, String title, String firstName, String surname, String jobTitle, String department) {
+        this.id = id;
+        this.title = title;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.jobTitle = jobTitle;
+        this.department = department;
     }
 
     public int getId() {
