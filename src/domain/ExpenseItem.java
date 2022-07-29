@@ -1,3 +1,5 @@
+package domain;
+
 public class ExpenseItem {
 
     private int id;

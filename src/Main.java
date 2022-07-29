@@ -1,3 +1,10 @@
+import domain.Employee;
+
+import domain.ExpenseClaim;
+import domain.ExpenseItem;
+
+import java.util.Date;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -6,7 +13,7 @@ public class Main {
         System.out.println(employee1.getFirstName());
         System.out.println(employee1.getJobTitle());
 
-        ExpenseClaim expenseClaim = new ExpenseClaim(24,642,"2021-09-01",26.99);
+        ExpenseClaim expenseClaim = new ExpenseClaim(24,642,new Date(),26.99);
         System.out.println(expenseClaim.getEmployeeId());
         expenseClaim.setPaid(true);
         System.out.println(expenseClaim.isPaid());
@@ -16,5 +23,8 @@ public class Main {
 
         ExpenseItem expenseItem = new ExpenseItem(24, 102, "hotel", "The Grand Hotel", 69.99);
         System.out.println(expenseItem.getDescription());
+        System.out.println(new Date());
+
+
     }
 }

@@ -1,13 +1,17 @@
+package domain;
+
+import java.util.Date;
+
 public class ExpenseClaim {
 
     private int id;
     private int employeeId;
-    private String dateOfClaim;
+    private Date dateOfClaim;
     private double totalAmount;
     private boolean approved;
     private boolean paid;
 
-    public ExpenseClaim(int id, int employeeId, String dateOfClaim, double totalAmount) {
+    public ExpenseClaim(int id, int employeeId, Date dateOfClaim, double totalAmount) {
         this.id = id;
         this.employeeId = employeeId;
         this.dateOfClaim = dateOfClaim;
@@ -34,7 +38,7 @@ public class ExpenseClaim {
         return employeeId;
     }
 
-    public String getDateOfClaim() {
+    public Date getDateOfClaim() {
         return dateOfClaim;
     }
 
