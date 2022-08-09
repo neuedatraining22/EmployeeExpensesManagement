@@ -2,6 +2,7 @@ import domain.Employee;
 
 import domain.ExpenseClaim;
 import domain.ExpenseItem;
+import domain.ExpenseType;
 
 import java.util.Date;
 
@@ -21,7 +22,7 @@ public class Main {
         expenseClaim.setPaid(true);
         System.out.println(expenseClaim.isPaid());
 
-        ExpenseItem expenseItem = new ExpenseItem(24, 102, "hotel", "The Grand Hotel", 69.99);
+        ExpenseItem expenseItem = new ExpenseItem(24, 102, ExpenseType.ACCOMODATION, "The Grand Hotel", 69.99);
         System.out.println(expenseItem.getDescription());
         System.out.println(new Date());
 
