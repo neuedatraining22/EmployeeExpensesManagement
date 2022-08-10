@@ -1,6 +1,9 @@
 package domain;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class ExpenseClaim {
@@ -8,15 +11,23 @@ public class ExpenseClaim {
     private int id;
     private int employeeId;
     private Date dateOfClaim;
-    private double totalAmount;
     private boolean approved;
     private boolean paid;
+    private List<ExpenseItem> expenseItems; // = new ArrayList<>();
 
-    public ExpenseClaim(int id, int employeeId, Date dateOfClaim, double totalAmount) {
+    public ExpenseClaim(int id, int employeeId, Date dateOfClaim) {
         this.id = id;
         this.employeeId = employeeId;
         this.dateOfClaim = dateOfClaim;
-        this.totalAmount = totalAmount;
+        this.expenseItems = new ArrayList<>();
+    }
+
+    public Double getTotalAmount() {
+        Double total = 0d;
+        for(ExpenseItem ei : expenseItems) {
+            total += ei.getAmount();
+        }
+        return total;
     }
 
     public void setApproved(boolean approved) {
@@ -31,6 +42,14 @@ public class ExpenseClaim {
         }
     }
 
+    public List<ExpenseItem> getExpenseItems() {
+        return expenseItems;
+    }
+
+    public void addExpenseItem(ExpenseItem item) {
+        expenseItems.add(item);
+    }
+
     public int getId() {
         return id;
     }
@@ -43,10 +62,6 @@ public class ExpenseClaim {
         return dateOfClaim;
     }
 
-    public double getTotalAmount() {
-        return totalAmount;
-    }
-
     public boolean isApproved() {
         return approved;
     }
@@ -56,27 +71,28 @@ public class ExpenseClaim {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ExpenseClaim that = (ExpenseClaim) o;
-        return id == that.id && employeeId == that.employeeId && Double.compare(that.totalAmount, totalAmount) == 0 && approved == that.approved && paid == that.paid && Objects.equals(dateOfClaim, that.dateOfClaim);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, employeeId, dateOfClaim, totalAmount, approved, paid);
-    }
-
-    @Override
     public String toString() {
         return "ExpenseClaim{" +
                 "id=" + id +
                 ", employeeId=" + employeeId +
                 ", dateOfClaim=" + dateOfClaim +
-                ", totalAmount=" + totalAmount +
                 ", approved=" + approved +
                 ", paid=" + paid +
+                ", expenseItems=" + expenseItems +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ExpenseClaim that = (ExpenseClaim) o;
+        return id == that.id && employeeId == that.employeeId && approved == that.approved && paid == that.paid && Objects.equals(dateOfClaim, that.dateOfClaim) && Objects.equals(expenseItems, that.expenseItems);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, employeeId, dateOfClaim, approved, paid, expenseItems);
+    }
 }
+
