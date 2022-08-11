@@ -1,8 +1,9 @@
 package domain;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -10,12 +11,12 @@ public class ExpenseClaim {
 
     private int id;
     private int employeeId;
-    private Date dateOfClaim;
+    private LocalDate dateOfClaim;
     private boolean approved;
     private boolean paid;
     private List<ExpenseItem> expenseItems; // = new ArrayList<>();
 
-    public ExpenseClaim(int id, int employeeId, Date dateOfClaim) {
+    public ExpenseClaim(int id, int employeeId, LocalDate dateOfClaim) {
         this.id = id;
         this.employeeId = employeeId;
         this.dateOfClaim = dateOfClaim;
@@ -58,7 +59,7 @@ public class ExpenseClaim {
         return employeeId;
     }
 
-    public Date getDateOfClaim() {
+    public LocalDate getDateOfClaim() {
         return dateOfClaim;
     }
 
