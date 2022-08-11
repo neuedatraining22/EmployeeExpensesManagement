@@ -114,9 +114,13 @@ public class ExpensesUI {
             }
         }
 
-        for (ExpenseClaim ec: expenseClaims) {
-            System.out.println(ec);
-        }
+        //ask the user if they want 1 of the reports
+        //press 1 for all claims
+        //2 for not approved claims
+
+        //repeat in a loop until the press X to exit
+               
+
     }
 }
 
