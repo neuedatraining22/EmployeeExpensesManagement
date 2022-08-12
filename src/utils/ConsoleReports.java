@@ -14,7 +14,7 @@ public class ConsoleReports implements ReportingPlatform {
 
     @Override
     public void listAllExpenseClaims() {
-
+        expenseClaims.stream().forEach( c -> System.out.println(c) );
     }
 
     @Override
@@ -26,11 +26,16 @@ public class ConsoleReports implements ReportingPlatform {
 
     @Override
     public void listAllExpenseClaimsApprovedNotPaid() {
-
+        expenseClaims.stream()
+                .filter(claim -> !claim.isPaid() )
+                .filter(claim -> claim.isApproved())
+                .forEach(claim ->System.out.println(claim));
     }
 
     @Override
     public void listAllExpenseClaimsWhereTotalIsGreaterThan200() {
-
+        expenseClaims.stream()
+                .filter( claim -> claim.getTotalAmount() > 200)
+                .forEach( claim ->System.out.println(claim));
     }
 }

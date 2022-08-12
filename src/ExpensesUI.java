@@ -1,6 +1,8 @@
 import domain.ExpenseClaim;
 import domain.ExpenseItem;
 import domain.ExpenseType;
+import utils.ConsoleReports;
+import utils.ReportingPlatform;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -99,6 +101,36 @@ public class ExpensesUI {
 
     }
 
+    public void showReports() {
+
+        String choice = "";
+        while (!choice.toUpperCase().equals("X")) {
+            System.out.println("Do you want to see a report?");
+            System.out.println("1 - All expense claims");
+            System.out.println("2 - All claims that are approved but not paid");
+            System.out.println("3 - All expense claims that are not approved");
+            System.out.println("4 - All expense claims above $200");
+            System.out.println("X - Exit");
+            choice = scanner.nextLine();
+
+            ReportingPlatform reports = new ConsoleReports(expenseClaims);
+
+            switch (choice.toUpperCase().charAt(0)) {
+                case '1' : reports.listAllExpenseClaims();
+                            break;
+                case '2' : reports.listAllExpenseClaimsApprovedNotPaid();
+                            break;
+                case '3' : reports.listAllExpenseClaimsNotApproved();
+                            break;
+                case '4' : reports.listAllExpenseClaimsWhereTotalIsGreaterThan200();
+                            break;
+                case 'X' : break;
+                default: System.out.println("Invalid entry - try again");
+            }
+
+        }
+    }
+
     public void start() {
         setUpExampleClaims();
 
@@ -114,12 +146,8 @@ public class ExpensesUI {
             }
         }
 
-        //ask the user if they want 1 of the reports
-        //press 1 for all claims
-        //2 for not approved claims
+        showReports();
 
-        //repeat in a loop until the press X to exit
-               
 
     }
 }
