@@ -2,8 +2,10 @@ import domain.ExpenseClaim;
 import domain.ExpenseItem;
 import domain.ExpenseType;
 import utils.ConsoleReports;
+import utils.DatabaseUtils;
 import utils.ReportingPlatform;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -127,7 +129,6 @@ public class ExpensesUI {
                 case 'X' : break;
                 default: System.out.println("Invalid entry - try again");
             }
-
         }
     }
 
@@ -148,6 +149,14 @@ public class ExpensesUI {
 
         showReports();
 
+        DatabaseUtils databaseUtils = new DatabaseUtils();
+        try {
+            databaseUtils.saveData(expenseClaims);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 }
